@@ -1,0 +1,23 @@
+{
+  "name": "exchangeRates",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "sass": "node-sass -w scss/ -o dist/css --recursive"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ivanburda1986/ExchangeRates.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ivanburda1986/ExchangeRates/issues"
+  },
+  "homepage": "https://github.com/ivanburda1986/ExchangeRates#readme",
+  "dependencies": {
+    "node-sass": "^4.13.1"
+  }
+}
