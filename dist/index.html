@@ -11,7 +11,30 @@
 </head>
 
 <body>
+  <div class="container">
+    <h1>Currency Converter</h1>
+    <form>
+      <fieldset>
+          <input type="text" id="amountInput1" class="amountInput" placeholder="Type in an amount...">
+          <label for="currencySelect1"></label>
+          <select name="currencySelect1" id="currencySelect1">
+            <option value="1">one</option>
+            <option value="2">two</option>
+            <option value="3">three</option>
+          </select>
+        <input type="text" id="amountInput2" class="amountInput" placeholder="Type in an amount...">
+        <label for="currencySelect2"></label>
+        <select name="currencySelect2" id="currencySelect2">
+          <option value="1">one</option>
+          <option value="2">two</option>
+          <option value="3">three</option>
+        </select>
+      </fieldset>
+    </form>
 
+  <script src="api-rates.js"></script>
+  <script src="app.js"></script>
+  </div>
 </body>
 
 </html>
