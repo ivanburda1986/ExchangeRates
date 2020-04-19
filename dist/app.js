@@ -8,7 +8,7 @@ const xr = new XR();
 const listTarget1 = document.getElementById('currencySelect1');
 const listTarget2 = document.getElementById('currencySelect2');
 
-const currencies = xr.getCurrencies()
+const currencies = xr.getCurrencies(['CZK', 'USD', 'EUR', 'PLN', 'ISK'])
   .then(response => {
     ui.listCurrencies(listTarget1, response);
     ui.listCurrencies(listTarget2, response)

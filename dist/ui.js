@@ -8,7 +8,7 @@ class UI {
 
   //Display in the UI (listTarget) the of currencies (response)
   listCurrencies(listTarget, response) {
-    let currencies = Object.entries(response.currencies.currencies);
+    let currencies = Object.entries(response.currencies);
     let listOptions = '';
     currencies.forEach(function (currency) {
       listOptions += `
