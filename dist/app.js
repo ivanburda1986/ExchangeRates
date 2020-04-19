@@ -1,14 +1,13 @@
 //Initialize the UI
 const ui = new UI();
 
-//Populate the currency dropdown-selectors
-const listTarget1 = document.getElementById('currencySelect1');
-const listTarget2 = document.getElementById('currencySelect2');
-
 //Initialize the class with methods related to the currency conversions
 const xr = new XR();
 
 //Get currencies and populate with them the selection lists
+const listTarget1 = document.getElementById('currencySelect1');
+const listTarget2 = document.getElementById('currencySelect2');
+
 const currencies = xr.getCurrencies()
   .then(response => {
     ui.listCurrencies(listTarget1, response);
@@ -16,18 +15,17 @@ const currencies = xr.getCurrencies()
   })
   .catch(err => console.log(err));
 
+//Convert an amount and display the result
+document.getElementById('convert-button').addEventListener('click', (e) => {
+  //Obtain the inputs: from currency, to currency, amount to converst - and save them into the variable
+  const conversionInputs = ui.getConversionInput();
 
-//Request a conversion -- Unfortunately not supported by the Free Plan
-// const conversion = xr.convert('USD', 'GBP', 1)
-//   .then(response => {
-//     console.log(response);
-//   })
-//   .catch(err => console.log(err));
-
-
-//Convert an amount
-const conversion = xr.convert('CZK', 'PLN', 100)
-  .then(response => {
-    ui.displayConversionResult(response);
-  })
-  .catch(err => console.log(err));
+  //Pass the inputs into the conversion function
+  xr.convert(conversionInputs.fromCurrency, conversionInputs.toCurrency, conversionInputs.amountToConvert)
+    .then(response => {
+      //And use another function to display the results of the conversion
+      ui.displayConversionResult(response);
+    })
+    .catch(err => console.log(err));
+  e.preventDefault();
+});

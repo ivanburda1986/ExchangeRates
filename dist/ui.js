@@ -1,29 +1,36 @@
-function trimName(input) {
-  let outcome = '';
-  outcome = input.replace(/"/g, '').replace(/,/g, ' - ');
-  return outcome;
-}
-
-
 class UI {
   constructor() {
     this.conversionResultOutput = document.getElementById('result');
+    this.currencySelect1 = document.getElementById('currencySelect1');
+    this.currencySelect2 = document.getElementById('currencySelect2');
+    this.amountInput = document.getElementById('amountInput1');
   }
+
+  //Display in the UI (listTarget) the of currencies (response)
   listCurrencies(listTarget, response) {
-    //Set the target where to place the list of currencies - the target gets inserted as parameter of the constructor
     let currencies = Object.entries(response.currencies.currencies);
     let listOptions = '';
-    let value = 1;
-
     currencies.forEach(function (currency) {
       listOptions += `
-      <option value="${value}">${currency[1]} (${currency[0]})</option>
+      <option value="${currency[0]}">${currency[1]} (${currency[0]})</option>
       `;
-      value += 1;
     });
     listTarget.innerHTML = listOptions;
   }
 
+  //Get the FROM currency, TO currency and the AMOUNT to convert
+  getConversionInput() {
+    const fromCurrency = this.currencySelect1.options[this.currencySelect1.selectedIndex].value;
+    const toCurrency = this.currencySelect2.options[this.currencySelect2.selectedIndex].value;
+    const amountToConvert = this.amountInput.value;
+    return {
+      fromCurrency,
+      toCurrency,
+      amountToConvert
+    };
+  }
+
+  //Display in the UI the result of the performed conversion
   displayConversionResult(response) {
     this.conversionResultOutput.innerHTML = `${response.conversionResult}`;
   }

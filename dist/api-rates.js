@@ -2,7 +2,7 @@ class XR {
   constructor() {
     this.apiKey = "4c0bb50d5da07a3eae9a34a8031d0e22"; //currencylayer.com
   }
-
+  //Get a list of currencies to be offered to the user
   async getCurrencies() {
     // const currenciesResponse = await fetch(
     //   `http://api.currencylayer.com/list?access_key=${this.apiKey}`);
@@ -188,21 +188,8 @@ class XR {
     };
   }
 
-  // Request a conversion FROM a currency, TO a currency and specify the AMOUNT to be converted
-  // async convert(from, to, amount) {
-  //   const convertRequest = await fetch(`http://api.currencylayer.com/convert
-  //   ?access_key=${this.apiKey}
-  //   & from = ${from}
-  //   & to = ${to}
-  //   & amount = ${amount}
-  //   `);
-  //   const conversionResult = await convertRequest.json();
-  //   return {
-  //     conversionResult
-  //   };
-  // }
-
-  //Request conversion rates for all currencies towards the base currency: USD
+  //Perform the conversion between two currencies specified by the user
+  //--Request conversion rates for all currencies towards the base currency: USD
   async convert(from, to, amount) {
     //const towardsBaseRequest = await fetch(`http://api.currencylayer.com/live?access_key=${this.apiKey}`);
     //const towardsBase = await towardsBaseRequest.json();
@@ -384,8 +371,9 @@ class XR {
       }
     }
     const baseCurrency = towardsBase.source;
-    let conversionResult;
 
+    //--Perform the conversion
+    let conversionResult;
     (function convert(from, to, amount) {
       conversionResult = ((towardsBase.quotes[baseCurrency + to] / towardsBase.quotes[baseCurrency + from]) * parseFloat(amount)).toFixed(2);
     })(from, to, amount);
