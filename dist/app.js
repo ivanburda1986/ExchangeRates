@@ -5,10 +5,13 @@ const ui = new UI();
 const xr = new XR();
 
 //Get currencies and populate with them the selection lists
+
+//-Selectors
 const listTarget1 = document.getElementById('currencySelect1');
 const listTarget2 = document.getElementById('currencySelect2');
 
-const currencies = xr.getCurrencies(['CZK', 'USD', 'EUR', 'PLN', 'ISK'])
+//-Request alphabetically sorted currencies specified in the array
+const currencies = xr.getCurrencies(['CZK', 'USD', 'EUR', 'PLN', 'ISK', 'UAH'].sort())
   .then(response => {
     ui.listCurrencies(listTarget1, response);
     ui.listCurrencies(listTarget2, response)
@@ -17,13 +20,13 @@ const currencies = xr.getCurrencies(['CZK', 'USD', 'EUR', 'PLN', 'ISK'])
 
 //Convert an amount and display the result
 document.getElementById('convert-button').addEventListener('click', (e) => {
-  //Obtain the inputs: from currency, to currency, amount to converst - and save them into the variable
+  //-Obtain the inputs: from currency, to currency, amount to convert - and save them into the variable
   const conversionInputs = ui.getConversionInput();
 
-  //Pass the inputs into the conversion function
+  //-Pass the inputs into the conversion function
   xr.convert(conversionInputs.fromCurrency, conversionInputs.toCurrency, conversionInputs.amountToConvert)
     .then(response => {
-      //And use another function to display the results of the conversion
+      //--And use another function to display the results of the conversion
       ui.displayConversionResult(response);
     })
     .catch(err => console.log(err));
