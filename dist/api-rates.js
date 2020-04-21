@@ -379,7 +379,7 @@ class XR {
       }
     }
     const baseCurrency = towardsBase.source;
-    const exchangeRate = '';
+    let exchangeRate = '';
     (function calculateExchangeRate(from, to) {
       exchangeRate = (towardsBase.quotes[baseCurrency + to] / towardsBase.quotes[baseCurrency + from]).toFixed(2);
     })(from, to)
@@ -391,11 +391,11 @@ class XR {
   }
 
   //Perform the conversion between two currencies specified by the user
-  async convert(from, to, amount) {
-    console.log(exchangeRate);
-
-    //--Perform the conversion
-    // parseFloat(amount)).toFixed(2)
+  convert(exchangeRate, amount) {
+    let conversionResult = (exchangeRate.exchangeRate * amount).toFixed(2);
+    return {
+      conversionResult
+    }
   }
 
 }

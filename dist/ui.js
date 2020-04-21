@@ -1,6 +1,7 @@
 class UI {
   constructor() {
     this.conversionResultOutput = document.getElementById('result');
+    this.exchangeRateOutput = document.getElementById('exchangeRate');
     this.currencySelect1 = document.getElementById('currencySelect1');
     this.currencySelect2 = document.getElementById('currencySelect2');
     this.amountInput = document.getElementById('amountInput1');
@@ -33,5 +34,9 @@ class UI {
   //Display in the UI the result of the performed conversion
   displayConversionResult(response) {
     this.conversionResultOutput.innerHTML = `${response.conversionResult}`;
+  }
+
+  displayexchangeRate(response) {
+    this.exchangeRateOutput.innerHTML = `${response.exchangeRate}`;
   }
 }

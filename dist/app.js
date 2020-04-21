@@ -5,12 +5,8 @@ const ui = new UI();
 const xr = new XR();
 
 //Get currencies and populate with them the selection lists
-
-//-Selectors
 const listTarget1 = document.getElementById('currencySelect1');
 const listTarget2 = document.getElementById('currencySelect2');
-
-//-Request alphabetically sorted currencies specified in the array
 const currencies = xr.getCurrencies(['CZK', 'USD', 'EUR', 'PLN', 'ISK', 'UAH'].sort())
   .then(response => {
     ui.listCurrencies(listTarget1, response);
@@ -18,17 +14,26 @@ const currencies = xr.getCurrencies(['CZK', 'USD', 'EUR', 'PLN', 'ISK', 'UAH'].s
   })
   .catch(err => console.log(err));
 
-//Convert an amount and display the result
+//Get the conversion for 2 chosen currencies, Convert the specified amount, Display the conversion result
 document.getElementById('convert-button').addEventListener('click', (e) => {
-  //-Obtain the inputs: from currency, to currency, amount to convert - and save them into the variable
+
+  //-Obtain the inputs: from currency, to currency, amount to convert
   const conversionInputs = ui.getConversionInput();
 
-  //-Pass the inputs into the conversion function
-  xr.convert(conversionInputs.fromCurrency, conversionInputs.toCurrency, conversionInputs.amountToConvert)
+  //-Obtain the exchange rate for the 2 chosen currencies and display it
+  xr.getExchangeRate(conversionInputs.fromCurrency, conversionInputs.toCurrency)
     .then(response => {
-      //--And use another function to display the results of the conversion
-      ui.displayConversionResult(response);
+      ui.displayexchangeRate(response);
+      //Once the exchange rate is delivered then pass it to the function which does the conversion and displays the result
+      convert(response);
     })
     .catch(err => console.log(err));
+
+  //-Request the conversion and display the result  
+  function convert(exchangeRate) {
+    let conversionResult = xr.convert(exchangeRate, conversionInputs.amountToConvert);
+    ui.displayConversionResult(conversionResult);
+  }
+
   e.preventDefault();
 });
