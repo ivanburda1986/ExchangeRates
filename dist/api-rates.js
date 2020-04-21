@@ -181,15 +181,15 @@ class XR {
     }
 
     //This function returns just a defined subset of the all currencies, because there are too many of them
-    function reduceAnObject(initialObject, extractThis) {
-      let extracted = {};
-      extractThis.forEach(function (item) {
-        extracted[item] = initialObject[item];
+    function reduceAnObject(initialObject, reduceToThis) {
+      let reductionResult = {};
+      reduceToThis.forEach(function (item) {
+        reductionResult[item] = initialObject[item];
       });
-      return extracted;
+      return reductionResult;
     }
 
-    //This variable store the object obtained from the function that reduced the list of all currencies
+    //This variable stores the object obtained from the function that reduced the list of all currencies
     let currencies = reduceAnObject(allCurrencies, currenciesToList);
 
     return {
@@ -197,9 +197,8 @@ class XR {
     };
   }
 
-  //Perform the conversion between two currencies specified by the user
-  //--Request conversion rates for all currencies towards the base currency: USD
-  async convert(from, to, amount) {
+  //Get a list of conversion rates for all currencies towards the based currency: USD
+  async getExchangeRate(from, to) {
     //const towardsBaseRequest = await fetch(`http://api.currencylayer.com/live?access_key=${this.apiKey}`);
     //const towardsBase = await towardsBaseRequest.json();
     const towardsBase = {
@@ -380,16 +379,23 @@ class XR {
       }
     }
     const baseCurrency = towardsBase.source;
-
-    //--Perform the conversion
-    let conversionResult;
-    (function convert(from, to, amount) {
-      conversionResult = ((towardsBase.quotes[baseCurrency + to] / towardsBase.quotes[baseCurrency + from]) * parseFloat(amount)).toFixed(2);
-    })(from, to, amount);
+    const exchangeRate = '';
+    (function calculateExchangeRate(from, to) {
+      exchangeRate = (towardsBase.quotes[baseCurrency + to] / towardsBase.quotes[baseCurrency + from]).toFixed(2);
+    })(from, to)
 
     return {
-      conversionResult
-    };
+      exchangeRate
+    }
+
+  }
+
+  //Perform the conversion between two currencies specified by the user
+  async convert(from, to, amount) {
+    console.log(exchangeRate);
+
+    //--Perform the conversion
+    // parseFloat(amount)).toFixed(2)
   }
 
 }
