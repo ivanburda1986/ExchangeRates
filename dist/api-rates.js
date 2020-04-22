@@ -197,11 +197,25 @@ class XR {
     };
   }
 
+  //Use data from cache or fetch fresh from the server?
+
+
   //Get a list of conversion rates for all currencies towards the based currency: USD
   async getExchangeRate(from, to) {
-    //const towardsBaseRequest = await fetch(`http://api.currencylayer.com/live?access_key=${this.apiKey}`);
-    //const towardsBase = await towardsBaseRequest.json();
-    const towardsBase = {
+    let lastTimeObtainedServerData = 1587588806776; //This needs to get store in the local store of the browser
+    let shouldRequestServerData = false;
+    (function cacheFor24Hours(lastTimeObtainedServerData) {
+      let currentTimestamp = new Date().getTime();
+      if (currentTimestamp - lastTimeObtainedServerData >= 86400000) {
+        console.log('I the cached data is older than 1 day, so I will get fresh from the server!');
+        shouldRequestServerData = true;
+      } else {
+        console.log('The cached data is not older than 1 day, so I will use it.');
+        shouldRequestServerData = false;
+      }
+    })(lastTimeObtainedServerData);
+
+    let ratesTowardsBaseCurrency = { //chache the rates in the local storage
       "success": true,
       "terms": "https:\/\/currencylayer.com\/terms",
       "privacy": "https:\/\/currencylayer.com\/privacy",
@@ -378,10 +392,19 @@ class XR {
         "USDZWL": 322.000001
       }
     }
-    const baseCurrency = towardsBase.source;
+
+    if (shouldRequestServerData === true) {
+      const getRatesTowardsBaseCurrencyRequest = await fetch(`http://api.currencylayer.com/live?access_key=${this.apiKey}`);
+      ratesTowardsBaseCurrency = await getRatesTowardsBaseCurrencyRequest.json();
+      console.log('I have used fresh exchange rates from the server!');
+    } else {
+      console.log('I have used exchange rates from the chache!');
+    }
+
+    const baseCurrency = ratesTowardsBaseCurrency.source;
     let exchangeRate = '';
     (function calculateExchangeRate(from, to) {
-      exchangeRate = (towardsBase.quotes[baseCurrency + to] / towardsBase.quotes[baseCurrency + from]).toFixed(2);
+      exchangeRate = (ratesTowardsBaseCurrency.quotes[baseCurrency + to] / ratesTowardsBaseCurrency.quotes[baseCurrency + from]).toFixed(2);
     })(from, to)
 
     return {

@@ -7,7 +7,7 @@ const xr = new XR();
 //Get currencies and populate with them the selection lists
 const listTarget1 = document.getElementById('currencySelect1');
 const listTarget2 = document.getElementById('currencySelect2');
-const currencies = xr.getCurrencies(['CZK', 'USD', 'EUR', 'PLN', 'ISK', 'UAH'].sort())
+const currencies = xr.getCurrencies(supportedCurrencies)
   .then(response => {
     ui.listCurrencies(listTarget1, response);
     ui.listCurrencies(listTarget2, response)

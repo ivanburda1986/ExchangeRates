@@ -1,0 +1,1 @@
+const supportedCurrencies = ['CZK', 'USD', 'EUR', 'PLN', 'ISK', 'UAH', 'BTC'].sort();
