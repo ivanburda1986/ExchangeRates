@@ -202,8 +202,9 @@ class XR {
 
   //Get a list of conversion rates for all currencies towards the based currency: USD
   async getExchangeRate(from, to) {
-    let lastTimeObtainedServerData = 1587588806776; //This needs to get store in the local store of the browser
+    let lastTimeObtainedServerData = 1587678521760; //This needs to get store in the local store of the browser
     let shouldRequestServerData = false;
+    //Check how old the cached data is and if more than 24h give an indication that fresh should be fetched
     (function cacheFor24Hours(lastTimeObtainedServerData) {
       let currentTimestamp = new Date().getTime();
       if (currentTimestamp - lastTimeObtainedServerData >= 86400000) {
@@ -215,7 +216,8 @@ class XR {
       }
     })(lastTimeObtainedServerData);
 
-    let ratesTowardsBaseCurrency = { //chache the rates in the local storage
+    //This is the cached data which is also store in the browser local storage
+    let ratesTowardsBaseCurrency = {
       "success": true,
       "terms": "https:\/\/currencylayer.com\/terms",
       "privacy": "https:\/\/currencylayer.com\/privacy",
@@ -392,7 +394,7 @@ class XR {
         "USDZWL": 322.000001
       }
     }
-
+    //Checks whether freshed data should be fetched - if yes, then it retrieves it from the server
     if (shouldRequestServerData === true) {
       const getRatesTowardsBaseCurrencyRequest = await fetch(`http://api.currencylayer.com/live?access_key=${this.apiKey}`);
       ratesTowardsBaseCurrency = await getRatesTowardsBaseCurrencyRequest.json();
@@ -401,6 +403,7 @@ class XR {
       console.log('I have used exchange rates from the chache!');
     }
 
+    //Calculates the conversion rate for the chose currencies and returns it
     const baseCurrency = ratesTowardsBaseCurrency.source;
     let exchangeRate = '';
     (function calculateExchangeRate(from, to) {
