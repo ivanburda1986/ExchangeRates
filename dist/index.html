@@ -14,17 +14,18 @@
   <div class="container">
     <h1>Currency Converter</h1>
     <form>
-      <div>
-        <label for="amountInput1">How much to convert</label>
-        <input type="text" name="amountInput1" id="amountInput1" class="amountInput" placeholder="Type in an amount...">
+      <div class="elementContainer">
+        <label for="amountInput1" class="amountfieldLabel">How much to convert</label>
+        <input type="text" name="amountInput1" id="amountInput1" class="amountInput" placeholder="Type in an amount..." autocomplete="off">
         <select name="currencySelect1" id="currencySelect1"></select>
       </div>
 
       <button id="convert-button">Convert</button>
       <div id="exchangeRate"><p>0,00</p></div>
 
-      <div>
-        <div id="result"><p>0,00</p></div>
+      <div class="elementContainer">
+        <label for="amountOutput1" class="amountfieldLabel">Conversion outcome</label>
+        <div name="amountOutput1" id="amountOutput1"><p>0,00</p></div>
         <select name="currencySelect2" id="currencySelect2"></select>
       </div>
 

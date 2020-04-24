@@ -1,4 +1,46 @@
+.container {
+  max-width: 800px;
+  padding: 0 1.5rem;
+  margin: auto; }
+
+.elementContainer {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  background: #172540;
+  border-radius: 5px;
+  padding: 0.5rem;
+  grid-template-areas: "label select" "input select"; }
+  .elementContainer .amountfieldLabel {
+    grid-area: label;
+    background: #fff;
+    padding: 1rem 0.5rem 0rem 0.5rem;
+    font-size: 0.8rem;
+    text-transform: uppercase; }
+  .elementContainer #amountInput1,
+  .elementContainer #amountOutput1 {
+    grid-area: input;
+    background: #fff;
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+    font-size: 1rem;
+    color: #172540;
+    border: 0px;
+    outline: 0; }
+  .elementContainer select {
+    grid-area: select;
+    border-left: 4px solid #172540;
+    border-radius: 5px;
+    outline: 0;
+    font-size: 0.9rem; }
+    .elementContainer select option {
+      height: 1rem; }
+
 /*General styles*/
 * {
   margin: 0;
   padding: 0; }
+
+body {
+  font-family: "Arial";
+  color: #97b7d8;
+  line-height: 1.6;
+  background: #4177a1; }

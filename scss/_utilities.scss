@@ -1,0 +1,48 @@
+.container {
+  max-width: $website-width;
+  padding: 0 1.5rem;
+  margin: auto;
+}
+
+//Element containers
+.elementContainer {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  background: $uiColor;
+  border-radius: 5px;
+  padding: 0.5rem;
+  grid-template-areas:
+    "label select"
+    "input select";
+
+  .amountfieldLabel {
+    grid-area: label;
+    background: #fff;
+    padding: 1rem 0.5rem 0rem 0.5rem; //top left down right
+    font-size: 0.8rem;
+    text-transform: uppercase;
+  }
+
+  #amountInput1,
+  #amountOutput1 {
+    grid-area: input;
+    background: #fff;
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem; //top left down right
+    font-size: 1rem;
+    color: $textColorDark;
+    border: 0px;
+    outline: 0;
+  }
+
+  select {
+    grid-area: select;
+    border-left: 4px solid $uiColor;
+    border-radius: 5px;
+    outline: 0;
+    font-size: 0.9rem;
+
+    option {
+      height: 1rem;
+    }
+  }
+}

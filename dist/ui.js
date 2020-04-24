@@ -3,7 +3,7 @@
 
 class UI {
   constructor() {
-    this.conversionResultOutput = document.getElementById('result');
+    this.conversionResultOutput = document.getElementById('amountOutput1');
     this.exchangeRateOutput = document.getElementById('exchangeRate');
     this.currencySelect1 = document.getElementById('currencySelect1');
     this.currencySelect2 = document.getElementById('currencySelect2');
