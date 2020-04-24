@@ -1,3 +1,6 @@
+// Currency flags: https://fabian7593.github.io/CountryAPI/
+
+
 class UI {
   constructor() {
     this.conversionResultOutput = document.getElementById('result');
