@@ -15,36 +15,75 @@ body {
 }
 
 .p05 {
-  margin: 0.5rem;
+  padding: 0.5rem;
 }
 
 .p1 {
-  margin: 1rem;
+  padding: 1rem;
 }
 
 .p2 {
-  margin: 2rem;
+  padding: 2rem;
 }
 
 .p3 {
-  margin: 3rem;
+  padding: 3rem;
+}
+
+.my-1 {
+  margin-top: 10px;
+  margin-bottom: 10px
+}
+
+.my-2 {
+  padding-top: 20px;
+  padding-bottom: 20px
+}
+
+//Page headline
+#page-headline {
+  margin: 0 auto;
 }
 
 //Exchange ratio
-#exchangeRatio {
+#conversionAnalysis {
   display: flex;
   flex-direction: column;
 
   .ratioSection {
     display: flex;
     flex-direction: column;
+  }
+
+  #conversionRateSection {
+    display: flex;
+    flex-direction: row;
+
+    #exchangeRatio {
+      margin-left: 10px;
+    }
+  }
+
+  #conversionAnalysisGraphs {
+    display: flex;
+
+    .graphContainer {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+    }
 
     .ratioGraph {
       height: 1rem;
       width: 1px;
       background: $dominantColor;
+      margin-left: 10px;
+      transition: width 3s;
     }
   }
+
+
 }
 
 

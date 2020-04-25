@@ -7,8 +7,11 @@ class UI {
     this.currencySelect1 = document.getElementById("currencySelect1");
     this.currencySelect2 = document.getElementById("currencySelect2");
     this.amountInput = document.getElementById("amountInput1");
-    this.originalCurrency = document.getElementById("originalCurrency");
-    this.targetCurrency = document.getElementById("targetCurrency");
+    this.exchangeRatio = document.getElementById("exchangeRatio");
+    this.originalCurrencyBar = document.getElementById("originalCurrencyBar");
+    this.targetCurrencyBar = document.getElementById("targetCurrencyBar");
+    this.originalCurrencyBarLabel = document.getElementById("originalCurrencyBarLabel");
+    this.targetCurrencyBarLabel = document.getElementById("targetCurrencyBarLabel");
   }
 
   //Display in the UI (listTarget) the of currencies (response)
@@ -49,8 +52,37 @@ class UI {
   }
 
   //Visualise the exchange ratio
-  visualiseExchangeRatio() {
-    console.log('hello');
+  visualiseExchangeRatio(response) {
+    this.exchangeRatio.innerText = `1.00 ${this.currencySelect1.options[
+      this.currencySelect1.selectedIndex
+    ].value} = ${response.exchangeRate} ${this.currencySelect2.options[
+      this.currencySelect2.selectedIndex
+    ].value}`;
+
+    this.originalCurrencyBarLabel.innerText = this.currencySelect1.options[
+      this.currencySelect1.selectedIndex
+    ].value;
+
+    this.targetCurrencyBarLabel.innerText = this.currencySelect2.options[
+      this.currencySelect2.selectedIndex
+    ].value;
+
+
+    let ratio = parseFloat(response.exchangeRate);
+    if (ratio > 1) {
+      console.log('higher');
+      console.log(ratio);
+      console.log(100 / ratio);
+      this.originalCurrencyBar.setAttribute("style", "width: 100%");
+      this.targetCurrencyBar.setAttribute("style", `width: ${100/ratio}%`);
+    } else {
+      console.log('lower');
+      console.log(ratio);
+      console.log(ratio * 100);
+      this.originalCurrencyBar.setAttribute("style", `width: ${ratio*100}%`);
+      this.targetCurrencyBar.setAttribute("style", "width: 100%");
+    }
+
 
   }
 

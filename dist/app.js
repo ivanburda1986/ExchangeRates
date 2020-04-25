@@ -23,7 +23,7 @@ document.getElementById('convert-button').addEventListener('click', (e) => {
   //-Obtain the exchange rate for the 2 chosen currencies and display it
   xr.getExchangeRate(conversionInputs.fromCurrency, conversionInputs.toCurrency)
     .then(response => {
-      ui.displayexchangeRate(response);
+      ui.visualiseExchangeRatio(response);
       //Once the exchange rate is delivered then pass it to the function which does the conversion and displays the result
       convert(response);
     })
@@ -35,8 +35,7 @@ document.getElementById('convert-button').addEventListener('click', (e) => {
     ui.displayConversionResult(conversionResult);
   }
 
-  //Visualise exchange ratio
-  ui.visualiseExchangeRatio();
+
 
   e.preventDefault();
 });

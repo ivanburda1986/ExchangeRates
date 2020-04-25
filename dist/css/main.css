@@ -1,4 +1,6 @@
 .container {
+  display: flex;
+  flex-direction: column;
   max-width: 800px;
   padding: 0 1.5rem;
   margin: auto; }
@@ -52,27 +54,52 @@ body {
   background: #4177a1; }
 
 .p05 {
-  margin: 0.5rem; }
+  padding: 0.5rem; }
 
 .p1 {
-  margin: 1rem; }
+  padding: 1rem; }
 
 .p2 {
-  margin: 2rem; }
+  padding: 2rem; }
 
 .p3 {
-  margin: 3rem; }
+  padding: 3rem; }
 
-#exchangeRatio {
+.my-1 {
+  margin-top: 10px;
+  margin-bottom: 10px; }
+
+.my-2 {
+  padding-top: 20px;
+  padding-bottom: 20px; }
+
+#page-headline {
+  margin: 0 auto; }
+
+#conversionAnalysis {
   display: flex;
   flex-direction: column; }
-  #exchangeRatio .ratioSection {
+  #conversionAnalysis .ratioSection {
     display: flex;
     flex-direction: column; }
-    #exchangeRatio .ratioSection .ratioGraph {
+  #conversionAnalysis #conversionRateSection {
+    display: flex;
+    flex-direction: row; }
+    #conversionAnalysis #conversionRateSection #exchangeRatio {
+      margin-left: 10px; }
+  #conversionAnalysis #conversionAnalysisGraphs {
+    display: flex; }
+    #conversionAnalysis #conversionAnalysisGraphs .graphContainer {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center; }
+    #conversionAnalysis #conversionAnalysisGraphs .ratioGraph {
       height: 1rem;
       width: 1px;
-      background: #b97637; }
+      background: #b97637;
+      margin-left: 10px;
+      transition: width 3s; }
 
 #convert-button {
   display: block;

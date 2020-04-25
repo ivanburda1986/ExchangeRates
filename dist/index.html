@@ -14,31 +14,45 @@
 
 <body>
   <div class="container">
-    <h1>Your Currency Convertor</h1>
+    <h1 id="page-headline" class="p1">Your Currency Convertor</h1>
     <form>
+      <!--The conversion input-->
       <div class="elementContainer">
         <label for="amountInput1" class="amountfieldLabel">How much to convert</label>
         <input type="text" name="amountInput1" id="amountInput1" class="amountInput" placeholder="Type in an amount..." autocomplete="off">
         <select name="currencySelect1" id="currencySelect1"></select>
       </div>
+
       <br>
+      <!--The conversion output-->
       <div class="elementContainer">
         <label for="amountOutput1" class="amountfieldLabel">Conversion outcome</label>
         <div name="amountOutput1" id="amountOutput1"><p>0,00</p></div>
         <select name="currencySelect2" id="currencySelect2"></select>
       </div>
+
       <br>
-      <div class="elementContainer" id="exchangeRatio">
-        <div class="ratioSection">
-          <p id="originalCurrency">1 CZK</p><div class="ratioGraph"></div>
+      <!--Exchange ratio and currency powers-->
+      <div class="elementContainer" id="conversionAnalysis">
+        <div class="ratioSection" id="conversionRateSection">
+          <label for="exchangeRatio">Conversion rate:</label>
+          <p id="exchangeRatio" name="exchangeRatio"></p>
         </div>
-        <div class="ratioSection">
-          <p id="targetCurrency">25 EUR</p><div class="ratioGraph"></div>
+
+        <div class="ratioSection" id="conversionAnalysisGraphs">
+          <div class="graphContainer">
+            <label id="originalCurrencyBarLabel" for="originalCurrencyBar">EUR</label>
+            <div class="ratioGraph" id="originalCurrencyBar" name="originalCurrencyBar"></div>
+          </div>
+        <div class="graphContainer">
+          <label id="targetCurrencyBarLabel" for="targetCurrencyBar">CZK</label>
+          <div class="ratioGraph" id="targetCurrencyBar" name="targetCurrencyBar"></div>
+        </div>
         </div>
       </div>
 
       <button id="convert-button" class="btn p1">Convert</button>
-      <div id="exchangeRate"><p>0,00</p></div>
+      <div id="exchangeRate"><p></p></div>
 
     </form>
 

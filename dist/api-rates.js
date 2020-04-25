@@ -202,7 +202,7 @@ class XR {
 
   //Get a list of conversion rates for all currencies towards the based currency: USD
   async getExchangeRate(from, to) {
-    let lastTimeObtainedServerData = 1587678521760; //This needs to get store in the local store of the browser
+    let lastTimeObtainedServerData = 1587838347687; //This needs to get store in the local store of the browser
     let shouldRequestServerData = false;
     //Check how old the cached data is and if more than 24h give an indication that fresh should be fetched
     (function cacheFor24Hours(lastTimeObtainedServerData) {
