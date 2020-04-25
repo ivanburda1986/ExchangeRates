@@ -30,7 +30,8 @@
     border-left: 4px solid #172540;
     border-radius: 5px;
     outline: 0;
-    font-size: 0.9rem; }
+    font-size: 1rem;
+    font-weight: 700; }
     .elementContainer select option {
       height: 1rem; }
 
