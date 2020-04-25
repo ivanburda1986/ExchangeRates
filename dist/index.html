@@ -5,6 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/currency-flags.css">
+  <link rel="stylesheet" href="css/currency-flags.min.css">
   <link rel="stylesheet" href="css/main.css">
   </link>
   <title>Exchange Rates</title>
@@ -12,22 +14,31 @@
 
 <body>
   <div class="container">
-    <h1>Currency Converter</h1>
+    <h1>Your Currency Convertor</h1>
     <form>
       <div class="elementContainer">
         <label for="amountInput1" class="amountfieldLabel">How much to convert</label>
         <input type="text" name="amountInput1" id="amountInput1" class="amountInput" placeholder="Type in an amount..." autocomplete="off">
         <select name="currencySelect1" id="currencySelect1"></select>
       </div>
-
-      <button id="convert-button">Convert</button>
-      <div id="exchangeRate"><p>0,00</p></div>
-
+      <br>
       <div class="elementContainer">
         <label for="amountOutput1" class="amountfieldLabel">Conversion outcome</label>
         <div name="amountOutput1" id="amountOutput1"><p>0,00</p></div>
         <select name="currencySelect2" id="currencySelect2"></select>
       </div>
+      <br>
+      <div class="elementContainer" id="exchangeRatio">
+        <div class="ratioSection">
+          <p id="originalCurrency">1 CZK</p><div class="ratioGraph"></div>
+        </div>
+        <div class="ratioSection">
+          <p id="targetCurrency">25 EUR</p><div class="ratioGraph"></div>
+        </div>
+      </div>
+
+      <button id="convert-button" class="btn p1">Convert</button>
+      <div id="exchangeRate"><p>0,00</p></div>
 
     </form>
 

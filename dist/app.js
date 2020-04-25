@@ -35,5 +35,8 @@ document.getElementById('convert-button').addEventListener('click', (e) => {
     ui.displayConversionResult(conversionResult);
   }
 
+  //Visualise exchange ratio
+  ui.visualiseExchangeRatio();
+
   e.preventDefault();
 });

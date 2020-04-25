@@ -32,8 +32,13 @@
     outline: 0;
     font-size: 1rem;
     font-weight: 700; }
-    .elementContainer select option {
-      height: 1rem; }
+
+.btn {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  border: 3px solid #172540;
+  border-radius: 5px;
+  cursor: pointer; }
 
 /*General styles*/
 * {
@@ -45,3 +50,33 @@ body {
   color: #97b7d8;
   line-height: 1.6;
   background: #4177a1; }
+
+.p05 {
+  margin: 0.5rem; }
+
+.p1 {
+  margin: 1rem; }
+
+.p2 {
+  margin: 2rem; }
+
+.p3 {
+  margin: 3rem; }
+
+#exchangeRatio {
+  display: flex;
+  flex-direction: column; }
+  #exchangeRatio .ratioSection {
+    display: flex;
+    flex-direction: column; }
+    #exchangeRatio .ratioSection .ratioGraph {
+      height: 1rem;
+      width: 1px;
+      background: #b97637; }
+
+#convert-button {
+  display: block;
+  margin: 1rem auto;
+  font-size: 1rem;
+  font-weight: 700;
+  background-color: #fecd7d; }

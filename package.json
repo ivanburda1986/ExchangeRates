@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/ivanburda1986/ExchangeRates#readme",
   "dependencies": {
+    "currency-flags": "^2.1.1",
     "node-sass": "^4.13.1"
   }
 }

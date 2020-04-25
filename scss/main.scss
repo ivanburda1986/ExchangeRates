@@ -13,3 +13,46 @@ body {
   line-height: 1.6;
   background: $backgroundColor;
 }
+
+.p05 {
+  margin: 0.5rem;
+}
+
+.p1 {
+  margin: 1rem;
+}
+
+.p2 {
+  margin: 2rem;
+}
+
+.p3 {
+  margin: 3rem;
+}
+
+//Exchange ratio
+#exchangeRatio {
+  display: flex;
+  flex-direction: column;
+
+  .ratioSection {
+    display: flex;
+    flex-direction: column;
+
+    .ratioGraph {
+      height: 1rem;
+      width: 1px;
+      background: $dominantColor;
+    }
+  }
+}
+
+
+//Main convert button
+#convert-button {
+  display: block;
+  margin: 1rem auto;
+  font-size: 1rem;
+  font-weight: 700;
+  background-color: $complementaryColor;
+}

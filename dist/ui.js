@@ -7,6 +7,8 @@ class UI {
     this.currencySelect1 = document.getElementById("currencySelect1");
     this.currencySelect2 = document.getElementById("currencySelect2");
     this.amountInput = document.getElementById("amountInput1");
+    this.originalCurrency = document.getElementById("originalCurrency");
+    this.targetCurrency = document.getElementById("targetCurrency");
   }
 
   //Display in the UI (listTarget) the of currencies (response)
@@ -15,7 +17,7 @@ class UI {
     let listOptions = "";
     currencies.forEach(function (currency) {
       listOptions += `
-      <option value="${currency[0]}">${currency[1]} (${currency[0]})</option>
+      <option value="${currency[0]}"><div id="us-flag"></div>${currency[1]} (${currency[0]})</option>
       `;
     });
     listTarget.innerHTML = listOptions;
@@ -45,4 +47,11 @@ class UI {
   displayexchangeRate(response) {
     this.exchangeRateOutput.innerHTML = `${response.exchangeRate}`;
   }
+
+  //Visualise the exchange ratio
+  visualiseExchangeRatio() {
+    console.log('hello');
+
+  }
+
 }
