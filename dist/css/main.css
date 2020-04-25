@@ -94,6 +94,8 @@ body {
       flex-direction: row;
       justify-content: flex-start;
       align-items: center; }
+    #conversionAnalysis #conversionAnalysisGraphs .currency-flag {
+      margin: 0 5px; }
     #conversionAnalysis #conversionAnalysisGraphs .ratioGraph {
       height: 1rem;
       width: 1px;
