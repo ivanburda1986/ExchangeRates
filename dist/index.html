@@ -19,7 +19,8 @@
       <!--The conversion input-->
       <div class="elementContainer">
         <label for="amountInput1" class="amountfieldLabel">How much to convert</label>
-        <input type="text" name="amountInput1" id="amountInput1" class="amountInput" placeholder="Type in an amount..." autocomplete="off">
+        <input type="text" name="amountInput1" id="amountInput1" class="amountInput" placeholder="Type in an amount..."
+          autocomplete="off">
         <select name="currencySelect1" id="currencySelect1"></select>
       </div>
 
@@ -27,7 +28,9 @@
       <!--The conversion output-->
       <div class="elementContainer">
         <label for="amountOutput1" class="amountfieldLabel">Conversion outcome</label>
-        <div name="amountOutput1" id="amountOutput1"><p>0,00</p></div>
+        <div name="amountOutput1" id="amountOutput1">
+          <p>0,00</p>
+        </div>
         <select name="currencySelect2" id="currencySelect2"></select>
       </div>
 
@@ -40,23 +43,26 @@
         </div>
 
         <div class="ratioSection" id="conversionAnalysisGraphs">
+          <p>Relative currency power:</p>
           <div class="graphContainer">
             <label id="originalCurrencyBarLabel" for="originalCurrencyBar">EUR</label>
-            
+
             <div class="ratioGraph" id="originalCurrencyBar" name="originalCurrencyBar"></div>
           </div>
-        <div class="graphContainer">
-          <label id="targetCurrencyBarLabel" for="targetCurrencyBar">CZK</label>
-          <div class="ratioGraph" id="targetCurrencyBar" name="targetCurrencyBar"></div>
-        </div>
+          <div class="graphContainer">
+            <label id="targetCurrencyBarLabel" for="targetCurrencyBar">EUR</label>
+            <div class="ratioGraph" id="targetCurrencyBar" name="targetCurrencyBar"></div>
+          </div>
         </div>
       </div>
 
       <button id="convert-button" class="btn p1">Convert</button>
-      <div id="exchangeRate"><p></p></div>
-
+      <div id="exchangeRate">
+        <p></p>
+      </div>
     </form>
 
+    <script src="localStorage.js"></script>
     <script src="config.js"></script>
     <script src="ui.js"></script>
     <script src="api-rates.js"></script>

@@ -1,4 +1,5 @@
-- currency ex ration visualisation
+- currency ex ration visualisation - DONE
 - flags in the dropdown
 - saving to the local store: the last-time fetch of the exchange rates from the server, last-time selected currencies
+- removing the need to use the convert button; outcome will recalculate upon every input change
 - responsiveness

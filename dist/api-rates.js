@@ -201,14 +201,17 @@ class XR {
 
 
   //Get a list of conversion rates for all currencies towards the based currency: USD
-  async getExchangeRate(from, to) {
-    let lastTimeObtainedServerData = 1587838347687; //This needs to get store in the local store of the browser
+  async getExchangeRate(from, to, XRFetchTimestamp) {
+    let lastTimeObtainedServerData = parseInt(XRFetchTimestamp.timestamp); //This needs to get store in the local store of the browser
     let shouldRequestServerData = false;
+    let currentFetchTimestamp = 0;
     //Check how old the cached data is and if more than 24h give an indication that fresh should be fetched
     (function cacheFor24Hours(lastTimeObtainedServerData) {
       let currentTimestamp = new Date().getTime();
+      console.log(lastTimeObtainedServerData);
+      console.log(currentTimestamp);
       if (currentTimestamp - lastTimeObtainedServerData >= 86400000) {
-        console.log('I the cached data is older than 1 day, so I will get fresh from the server!');
+        console.log('The cached data is older than 1 day, so I will get fresh from the server!');
         shouldRequestServerData = true;
       } else {
         console.log('The cached data is not older than 1 day, so I will use it.');
@@ -398,6 +401,7 @@ class XR {
     if (shouldRequestServerData === true) {
       const getRatesTowardsBaseCurrencyRequest = await fetch(`http://api.currencylayer.com/live?access_key=${this.apiKey}`);
       ratesTowardsBaseCurrency = await getRatesTowardsBaseCurrencyRequest.json();
+      currentFetchTimestamp = new Date().getTime();
       console.log('I have used fresh exchange rates from the server!');
     } else {
       console.log('I have used exchange rates from the chache!');
@@ -411,7 +415,8 @@ class XR {
     })(from, to)
 
     return {
-      exchangeRate
+      exchangeRate,
+      currentFetchTimestamp
     }
 
   }

@@ -70,15 +70,15 @@ class UI {
 
     let ratio = parseFloat(response.exchangeRate);
     if (ratio > 1) {
-      console.log('higher');
-      console.log(ratio);
-      console.log(100 / ratio);
+      // console.log('higher');
+      // console.log(ratio);
+      // console.log(100 / ratio);
       this.originalCurrencyBar.setAttribute("style", "width: 100%");
       this.targetCurrencyBar.setAttribute("style", `width: ${100/ratio}%`);
     } else {
-      console.log('lower');
-      console.log(ratio);
-      console.log(ratio * 100);
+      // console.log('lower');
+      // console.log(ratio);
+      // console.log(ratio * 100);
       this.originalCurrencyBar.setAttribute("style", `width: ${ratio*100}%`);
       this.targetCurrencyBar.setAttribute("style", "width: 100%");
     }
