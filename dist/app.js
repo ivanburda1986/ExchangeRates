@@ -42,7 +42,6 @@ document.getElementById("convert-button").addEventListener("click", (e) => {
     .then((response) => {
       ui.visualiseExchangeRatio(response);
       //Set the last-fetch timestamp to the local storage
-      console.log(response);
       storage.setXRFetchTimestamp(response.currentFetchTimestamp);
 
       //Once the exchange rate is delivered then pass it to the function which does the conversion and displays the result

@@ -29,15 +29,11 @@ class Storage {
   setCurrencies(from, to) {
     localStorage.setItem('from', from);
     localStorage.setItem('to', to);
-    console.log('Currencies saved in the local storage.')
+    //console.log('Currencies saved in the local storage.')
   }
 
   getLastXRFetchTimestamp() {
-    if (localStorage.getItem('XRFetchTimestamp') === 'undefined') {
-      this.timestamp = 0;
-    } else {
-      this.timestamp = localStorage.getItem('XRFetchTimestamp');
-    }
+    this.timestamp = localStorage.getItem('XRFetchTimestamp');
     return {
       timestamp: this.timestamp
     }

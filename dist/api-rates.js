@@ -208,8 +208,8 @@ class XR {
     //Check how old the cached data is and if more than 24h give an indication that fresh should be fetched
     (function cacheFor24Hours(lastTimeObtainedServerData) {
       let currentTimestamp = new Date().getTime();
-      console.log(lastTimeObtainedServerData);
-      console.log(currentTimestamp);
+      console.log(`Last-obtained server data: ${lastTimeObtainedServerData}`);
+      console.log(`Current time: ${currentTimestamp}`);
       if (currentTimestamp - lastTimeObtainedServerData >= 86400000) {
         console.log('The cached data is older than 1 day, so I will get fresh from the server!');
         shouldRequestServerData = true;
