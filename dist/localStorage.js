@@ -4,8 +4,7 @@ class Storage {
     this.to;
     this.defaultFrom = 'EUR';
     this.defaultTo = 'USD';
-    this.timestamp;
-    this.defaultTimestamp = 123;
+    this.timestamp = 0;
     this.setDefaultTimestamp;
   }
   getLastCurrencies() {
@@ -34,10 +33,10 @@ class Storage {
   }
 
   getLastXRFetchTimestamp() {
-    if (localStorage.getItem('XRfetchTimestamp') === null) {
-      this.timestamp = this.defaultTimestamp;
+    if (localStorage.getItem('XRFetchTimestamp') === 'undefined') {
+      this.timestamp = 0;
     } else {
-      this.timestamp = localStorage.getItem('XRfetchTimestamp');
+      this.timestamp = localStorage.getItem('XRFetchTimestamp');
     }
     return {
       timestamp: this.timestamp
@@ -45,6 +44,6 @@ class Storage {
   }
 
   setXRFetchTimestamp(timestamp) {
-    localStorage.setItem('XRfetchTimestamp', timestamp);
+    localStorage.setItem('XRFetchTimestamp', timestamp);
   }
 }
