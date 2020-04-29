@@ -15,15 +15,15 @@ class UI {
   }
 
   //Display in the UI (listTarget) the of currencies (response)
-  listCurrencies(listTarget, response) {
-    let currencies = Object.entries(response.currencies);
-    let listOptions = "";
-    currencies.forEach(function (currency) {
-      listOptions += `
+  listCurrencies(listTarget, shortlistedCurrencies) {
+    let currencyObjectEntries = Object.entries(shortlistedCurrencies);
+    let listCurrencies = "";
+    currencyObjectEntries.forEach(function (currency) {
+      listCurrencies += `
       <option value="${currency[0]}"><div id="us-flag"></div>${currency[1]} (${currency[0]})</option>
       `;
     });
-    listTarget.innerHTML = listOptions;
+    listTarget.innerHTML = listCurrencies;
   }
 
   //Get the FROM currency, TO currency and the AMOUNT to convert

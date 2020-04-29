@@ -39,6 +39,13 @@ class Storage {
     }
   }
 
+  initXRFetchTimestamp() {
+    if (localStorage.getItem('XRFetchTimestamp') === null) {
+      localStorage.setItem('XRFetchTimestamp', 100);
+    } else
+      console.log(localStorage.getItem('XRFetchTimestamp'));
+  }
+
   setXRFetchTimestamp(timestamp) {
     localStorage.setItem('XRFetchTimestamp', timestamp);
   }
