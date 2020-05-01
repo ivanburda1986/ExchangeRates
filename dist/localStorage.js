@@ -31,10 +31,12 @@ class Storage {
 
   setAllRatesTowardsBaseCurrency(allRatesTowardsBaseCurrency) {
     localStorage.setItem('ratesTowardsBaseCurrency', JSON.stringify(allRatesTowardsBaseCurrency));
+    console.log("Server rates have been saved to the local storage");
   }
 
   getAllRatesTowardsBaseCurrency() {
     let allRatesTowardsBaseCurrency = localStorage.getItem('ratesTowardsBaseCurrency');
+    console.log("Rates have been loaded from the local storage");
     return JSON.parse(allRatesTowardsBaseCurrency);
   }
 

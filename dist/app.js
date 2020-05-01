@@ -32,6 +32,7 @@
 
   //Convert the amount between the two selected currencies and display the results
   document.getElementById("convert-button").addEventListener("click", (e) => {
+    console.log("-------------------------");
     //Obtain the inputs: FROM currency, TO currency and the AMOUNT to convert
     const {
       from,
@@ -45,12 +46,36 @@
       to
     );
 
+    //Check presence of "allRatesTowardsBaseCurrency{}" in the local storage
+    const ratesInLocalStorage = storage.getAllRatesTowardsBaseCurrency();
+    let ratesFoundInLocalStorage;
+    (function availabilityOfRatesInLocalStorage() {
+      console.log("Rates in the local storage:" + ratesInLocalStorage);
+      if (ratesInLocalStorage === null) {
+        console.log("There are no rates in the local storage");
+        ratesFoundInLocalStorage = "notFound";
+      } else {
+        console.log('Rates have been found in the local storage');
+        ratesFoundInLocalStorage = "found";
+      }
+    })();
+
     //Get all rates towards the base currency
-    xr.getAllRatesTowardsBaseCurrency()
+    xr.getAllRatesTowardsBaseCurrency(ratesInLocalStorage, ratesFoundInLocalStorage)
       .then((response) => {
-        getOneRate(response);
+        getOneRate(response.ratesTowardsBaseCurrency);
+        console.log("Origin of rates:" + response.originOfRates);
+        shouldAllRatesGetCached(response.ratesTowardsBaseCurrency, response.originOfRates);
       })
       .catch((err) => console.log(err));
+
+
+    //Should the exchange rates be saved to the local storage? If they come from the server then they should
+    function shouldAllRatesGetCached(ratesTowardsBaseCurrency, originOfRates) {
+      if (originOfRates === "server") {
+        storage.setAllRatesTowardsBaseCurrency(ratesTowardsBaseCurrency);
+      }
+    }
 
     //Get the exchange rate for the FROM and TO combination of currencies
     function getOneRate(ratesTowardsBaseCurrency) {
