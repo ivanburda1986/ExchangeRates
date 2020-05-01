@@ -4,6 +4,7 @@ class Storage {
     this.to;
     this.defaultFrom = 'EUR';
     this.defaultTo = 'USD';
+
     this.timestamp = 0;
     this.setDefaultTimestamp;
   }
@@ -29,7 +30,6 @@ class Storage {
   setCurrencies(from, to) {
     localStorage.setItem('from', from);
     localStorage.setItem('to', to);
-    //console.log('Currencies saved in the local storage.')
   }
 
   getLastXRFetchTimestamp() {
@@ -37,6 +37,13 @@ class Storage {
     return {
       timestamp: this.timestamp
     }
+  }
+
+  initXRFetchTimestamp() {
+    if (localStorage.getItem('XRFetchTimestamp') === null) {
+      localStorage.setItem('XRFetchTimestamp', 100);
+    } else
+      console.log(localStorage.getItem('XRFetchTimestamp'));
   }
 
   setXRFetchTimestamp(timestamp) {
