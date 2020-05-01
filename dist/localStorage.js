@@ -18,6 +18,7 @@ class Storage {
       this.to = localStorage.getItem('to');
     }
 
+    console.log("Initialised selected currencies.")
     return {
       from: this.from,
       to: this.to
@@ -27,18 +28,26 @@ class Storage {
   setCurrencies(from, to) {
     localStorage.setItem('from', from);
     localStorage.setItem('to', to);
+    console.log("Selected currencies have been saved to the local storage.")
   }
 
   setAllRatesTowardsBaseCurrency(allRatesTowardsBaseCurrency) {
     localStorage.setItem('ratesTowardsBaseCurrency', JSON.stringify(allRatesTowardsBaseCurrency));
-    console.log("Server rates have been saved to the local storage");
+    console.log("Fresh exchange rates from the server have been saved to the local storage.");
   }
 
   getAllRatesTowardsBaseCurrency() {
     let allRatesTowardsBaseCurrency = localStorage.getItem('ratesTowardsBaseCurrency');
-    console.log("Rates have been loaded from the local storage");
+    console.log("Loading exchange rates from the local storage...");
     return JSON.parse(allRatesTowardsBaseCurrency);
   }
 
+  setStoredRatesTimestamp() {
+    localStorage.setItem('storedRatesTimestamp', new Date().getTime());
+  }
 
+  getStoredRatesTimestamp() {
+    let timestamp = localStorage.getItem('storedRatesTimestamp');
+    return timestamp;
+  }
 }

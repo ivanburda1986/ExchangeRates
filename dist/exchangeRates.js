@@ -4,7 +4,7 @@ class XR {
   }
 
   //Get a list of conversion rates for all currencies towards the based currency: USD
-  async getAllRatesTowardsBaseCurrency(ratesInLocalStorage, ratesFoundInLocalStorage) {
+  async getAllRatesTowardsBaseCurrency(ratesInLocalStorage, ratesAvailableInLocalStorage, storedRatesTimestamp) {
     let ratesTowardsBaseCurrency = ratesInLocalStorage;
     let shouldRequestServerData;
     let originOfRates;
@@ -12,23 +12,23 @@ class XR {
     //Check how old the cached data is and if more than 24h give an indication that fresh should be fetched
     (function requestServerDataOrNot() {
 
-      if (ratesFoundInLocalStorage === "notFound") {
+      if (ratesAvailableInLocalStorage === "unavailable") {
         shouldRequestServerData = true;
-      } else if (ratesFoundInLocalStorage === "found") {
-        let lastServerDataTimestamp = ratesTowardsBaseCurrency.timestamp;
-        console.log("LastServerDataTimestamp: " + lastServerDataTimestamp);
-        let currentTimestamp = parseInt(new Date().getTime() / 1000);
-        console.log("Current time: " + currentTimestamp);
-        let timestampDifference = currentTimestamp - lastServerDataTimestamp;
-        console.log("Difference: " + timestampDifference);
-        if (timestampDifference >= 1) {
+      } else if (ratesAvailableInLocalStorage === "available") {
+        let lastServerDataTimestamp = storedRatesTimestamp;
+        console.log("Timestamp of the exchange rates in the local storage: " + lastServerDataTimestamp);
+        let currentTimestamp = new Date().getTime();
+        console.log(`Current timestamp is: ${currentTimestamp}`);
+        let timestampDifference = parseInt((currentTimestamp - lastServerDataTimestamp) / 1000);
+        console.log(`Server exchange rates were last saved to the local storage: ${timestampDifference} seconds ago.`);
+        if (timestampDifference >= 86400) { //Maximum acceptable age of the chaged exchange rates - in seconds
           console.log(
-            "The cached data is older than 1 day, so I will get fresh from the server!"
+            "The cached data is older than the set maximum, so I will get fresh from the server!"
           );
           shouldRequestServerData = true;
         } else {
           console.log(
-            "The cached data is not older than 1 day, so I will use it."
+            "The cached data is not older than the set maximum, so I will use it."
           );
           shouldRequestServerData = false;
         }

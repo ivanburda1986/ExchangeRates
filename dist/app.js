@@ -46,25 +46,27 @@
       to
     );
 
-    //Check presence of "allRatesTowardsBaseCurrency{}" in the local storage
+    //Check availability of "allRatesTowardsBaseCurrency{}" in the local storage
     const ratesInLocalStorage = storage.getAllRatesTowardsBaseCurrency();
-    let ratesFoundInLocalStorage;
+    let ratesAvailabilityInLocalStorage;
+    let storedRatesTimestamp;
     (function availabilityOfRatesInLocalStorage() {
-      console.log("Rates in the local storage:" + ratesInLocalStorage);
       if (ratesInLocalStorage === null) {
-        console.log("There are no rates in the local storage");
-        ratesFoundInLocalStorage = "notFound";
+        console.log("No exchange rates available in the local storage.");
+        ratesAvailabilityInLocalStorage = "unavailable";
+        storedRatesTimestamp = storage.getStoredRatesTimestamp();
       } else {
-        console.log('Rates have been found in the local storage');
-        ratesFoundInLocalStorage = "found";
+        console.log('Exchange rates available in the local storage.');
+        ratesAvailabilityInLocalStorage = "available";
+        storedRatesTimestamp = storage.getStoredRatesTimestamp();
       }
     })();
 
     //Get all rates towards the base currency
-    xr.getAllRatesTowardsBaseCurrency(ratesInLocalStorage, ratesFoundInLocalStorage)
+    xr.getAllRatesTowardsBaseCurrency(ratesInLocalStorage, ratesAvailabilityInLocalStorage, storedRatesTimestamp)
       .then((response) => {
         getOneRate(response.ratesTowardsBaseCurrency);
-        console.log("Origin of rates:" + response.originOfRates);
+        console.log("Exchange rates for the conversion are from the: " + response.originOfRates);
         shouldAllRatesGetCached(response.ratesTowardsBaseCurrency, response.originOfRates);
       })
       .catch((err) => console.log(err));
@@ -74,6 +76,9 @@
     function shouldAllRatesGetCached(ratesTowardsBaseCurrency, originOfRates) {
       if (originOfRates === "server") {
         storage.setAllRatesTowardsBaseCurrency(ratesTowardsBaseCurrency);
+        storage.setStoredRatesTimestamp();
+      } else {
+        console.log("No need replace exchange rates in the local storage. They are fresh enough.")
       }
     }
 
