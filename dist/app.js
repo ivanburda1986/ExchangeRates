@@ -40,31 +40,31 @@
       conversionInputs.toCurrency
     );
 
-    //Obtain the exchange rate for the 2 chosen currencies -> request to display it; -> pass it to the conversion function
-    xr.getExchangeRate(conversionInputs.fromCurrency, conversionInputs.toCurrency)
+    //Get all rates towards the base currency
+    xr.getAllRatesTowardsBaseCurrency()
       .then((response) => {
-        //Request the conversion - provide the function with the exchange rate
-        convert(response.exchangeRate);
-        //Request displaying the exchange rate and relative currency powers
-        ui.visualiseExchangeRatio(response.exchangeRate, conversionInputs.fromCurrency, conversionInputs.toCurrency);
+        getOneRate(response);
       })
       .catch((err) => console.log(err));
 
-    //Convert the amount and display the result
-    function convert(exchangeRate) {
-      let conversionResult = xr.convert(exchangeRate, conversionInputs.amountToConvert);
-      ui.displayConversionResult(conversionResult);
+    function getOneRate(ratesTowardsBaseCurrency) {
+      let exchangeRate = xr.getOneRate(ratesTowardsBaseCurrency, conversionInputs.fromCurrency, conversionInputs.toCurrency);
+      doConversion(exchangeRate, conversionInputs.amountToConvert);
+      visualiseRatio(exchangeRate, conversionInputs.fromCurrency, conversionInputs.toCurrency);
+    }
+
+    function doConversion(exchangeRate, amount) {
+      let result = xr.convert(exchangeRate, amount);
+      displayResult(result);
+    }
+
+    function visualiseRatio(exchangeRate, from, to) {
+      ui.visualiseExchangeRatio(exchangeRate, from, to);
+    }
+
+    function displayResult(result) {
+      ui.displayConversionResult(result);
     }
 
     e.preventDefault();
   });
-
-
-
-  xr.getAllRatesTowardsBaseCurrency();
-
-
-
-  storage.initXRFetchTimestamp();
-  //Get last XR-fetch timestamp from the local storage
-  const XRFetchTimestamp = storage.getLastXRFetchTimestamp();

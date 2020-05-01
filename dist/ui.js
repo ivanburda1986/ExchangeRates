@@ -38,11 +38,6 @@ class UI {
     };
   }
 
-  //Display the conversion result 
-  displayConversionResult(conversionResult) {
-    this.conversionResultOutput.innerHTML = `${conversionResult}`;
-  }
-
   //Visualise the exchange ratio
   visualiseExchangeRatio(exchangeRate, from, to) {
     this.exchangeRatio.innerText = `1.00 ${from} = ${exchangeRate} ${to}`;
@@ -57,6 +52,11 @@ class UI {
       this.originalCurrencyBar.setAttribute("style", `width: ${ratio*100}%`);
       this.targetCurrencyBar.setAttribute("style", "width: 100%");
     }
+  }
+
+  //Display the conversion result 
+  displayConversionResult(conversionResult) {
+    this.conversionResultOutput.innerHTML = `${conversionResult}`;
   }
 
 }
