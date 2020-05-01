@@ -4,7 +4,7 @@ class XR {
   }
 
   //Get a list of server or cached conversion rates for all currencies towards the based currency: USD
-  async getAllRatesTowardsBaseCurrency(ratesInLocalStorage, ratesAvailableInLocalStorage, storedRatesTimestamp) {
+  async getAllRatesTowardsBaseCurrency(ratesInLocalStorage, ratesAvailableInLocalStorage, storedRatesTimestamp, exchangeRatesMaxCacheAge) {
     let ratesTowardsBaseCurrency = ratesInLocalStorage;
     let shouldRequestServerData;
     let originOfRates;
@@ -19,9 +19,10 @@ class XR {
         console.log("Timestamp of the exchange rates in the local storage: " + lastServerDataTimestamp);
         let currentTimestamp = new Date().getTime();
         console.log(`Current timestamp is: ${currentTimestamp}`);
+        console.log(`Max cache age: ${exchangeRatesMaxCacheAge}`);
         let timestampDifference = parseInt((currentTimestamp - lastServerDataTimestamp) / 1000);
         console.log(`Server exchange rates were last saved to the local storage: ${timestampDifference} seconds ago.`);
-        if (timestampDifference >= 86400) { //Maximum acceptable age of the chaged exchange rates - in seconds
+        if (timestampDifference >= exchangeRatesMaxCacheAge) { //Maximum acceptable age of the chaged exchange rates - in seconds
           console.log(
             "The cached data is older than the set maximum, so I will get fresh from the server!"
           );
