@@ -28,13 +28,13 @@ class UI {
 
   //Get the FROM currency, TO currency and the AMOUNT to convert
   getConversionInput() {
-    const fromCurrency = this.currencySelect1.options[this.currencySelect1.selectedIndex].value;
-    const toCurrency = this.currencySelect2.options[this.currencySelect2.selectedIndex].value;
-    const amountToConvert = this.amountInput.value;
+    const from = this.currencySelect1.options[this.currencySelect1.selectedIndex].value;
+    const to = this.currencySelect2.options[this.currencySelect2.selectedIndex].value;
+    const amount = this.amountInput.value;
     return {
-      fromCurrency,
-      toCurrency,
-      amountToConvert,
+      from,
+      to,
+      amount,
     };
   }
 

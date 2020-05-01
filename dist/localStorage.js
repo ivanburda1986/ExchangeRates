@@ -4,9 +4,6 @@ class Storage {
     this.to;
     this.defaultFrom = 'EUR';
     this.defaultTo = 'USD';
-
-    this.timestamp = 0;
-    this.setDefaultTimestamp;
   }
   getLastCurrencies() {
     if (localStorage.getItem('from') === null) {
@@ -21,6 +18,7 @@ class Storage {
       this.to = localStorage.getItem('to');
     }
 
+    console.log("Initialised selected currencies.")
     return {
       from: this.from,
       to: this.to
@@ -30,23 +28,26 @@ class Storage {
   setCurrencies(from, to) {
     localStorage.setItem('from', from);
     localStorage.setItem('to', to);
+    console.log("Selected currencies have been saved to the local storage.")
   }
 
-  getLastXRFetchTimestamp() {
-    this.timestamp = localStorage.getItem('XRFetchTimestamp');
-    return {
-      timestamp: this.timestamp
-    }
+  setAllRatesTowardsBaseCurrency(allRatesTowardsBaseCurrency) {
+    localStorage.setItem('ratesTowardsBaseCurrency', JSON.stringify(allRatesTowardsBaseCurrency));
+    console.log("Fresh exchange rates from the server have been saved to the local storage.");
   }
 
-  initXRFetchTimestamp() {
-    if (localStorage.getItem('XRFetchTimestamp') === null) {
-      localStorage.setItem('XRFetchTimestamp', 100);
-    } else
-      console.log(localStorage.getItem('XRFetchTimestamp'));
+  getAllRatesTowardsBaseCurrency() {
+    let allRatesTowardsBaseCurrency = localStorage.getItem('ratesTowardsBaseCurrency');
+    console.log("Loading exchange rates from the local storage...");
+    return JSON.parse(allRatesTowardsBaseCurrency);
   }
 
-  setXRFetchTimestamp(timestamp) {
-    localStorage.setItem('XRFetchTimestamp', timestamp);
+  setStoredRatesTimestamp() {
+    localStorage.setItem('storedRatesTimestamp', new Date().getTime());
+  }
+
+  getStoredRatesTimestamp() {
+    let timestamp = localStorage.getItem('storedRatesTimestamp');
+    return timestamp;
   }
 }
