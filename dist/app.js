@@ -19,61 +19,52 @@
     })
     .catch((err) => console.log(err));
 
-
-
-  storage.initXRFetchTimestamp();
-
   //Get last currencies from the local storage
   const storedCurrencies = storage.getLastCurrencies();
-
-  //Get last XR-fetch timestamp from the local storage
-  const XRFetchTimestamp = storage.getLastXRFetchTimestamp();
-
   //Set selected currencies to values obtained from the local storage
   document.addEventListener("DOMContentLoaded", setCurrenciesFromStorage);
 
-
-
-
-
   function setCurrenciesFromStorage() {
-    currencySelect1.value = storedCurrencies.from;
-    currencySelect2.value = storedCurrencies.to;
+    listTarget1.value = storedCurrencies.from;
+    listTarget2.value = storedCurrencies.to;
   }
 
-
-
-  //Get the conversion for 2 chosen currencies, Convert the specified amount, Display the conversion result
+  //Convert the amount between the two selected currencies and display the results
   document.getElementById("convert-button").addEventListener("click", (e) => {
-    //-Obtain the inputs: from currency, to currency, amount to convert
+    //Obtain the inputs: FROM currency, TO currency and the AMOUNT to convert
     const conversionInputs = ui.getConversionInput();
 
-    //-Obtain the exchange rate for the 2 chosen currencies and display it
-    xr.getExchangeRate(conversionInputs.fromCurrency, conversionInputs.toCurrency, XRFetchTimestamp)
-      .then((response) => {
-        ui.visualiseExchangeRatio(response);
-        //Set the last-fetch timestamp to the local storage
-        storage.setXRFetchTimestamp(response.currentFetchTimestamp);
-
-        //Once the exchange rate is delivered then pass it to the function which does the conversion and displays the result
-        convert(response);
-      })
-      .catch((err) => console.log(err));
-
-    //-Request the conversion and display the result
-    function convert(exchangeRate) {
-      let conversionResult = xr.convert(
-        exchangeRate,
-        conversionInputs.amountToConvert
-      );
-      ui.displayConversionResult(conversionResult);
-    }
-
-    //-Save the 'from' and 'to' currencies in the local storage
+    //Save the 'FROM' and 'TO' currencies in the local storage
     storage.setCurrencies(
       conversionInputs.fromCurrency,
       conversionInputs.toCurrency
     );
 
+    //Obtain the exchange rate for the 2 chosen currencies -> request to display it; -> pass it to the conversion function
+    xr.getExchangeRate(conversionInputs.fromCurrency, conversionInputs.toCurrency)
+      .then((response) => {
+        //Request the conversion - provide the function with the exchange rate
+        convert(response.exchangeRate);
+        //Request displaying the exchange rate and relative currency powers
+        ui.visualiseExchangeRatio(response.exchangeRate, conversionInputs.fromCurrency, conversionInputs.toCurrency);
+      })
+      .catch((err) => console.log(err));
+
+    //Convert the amount and display the result
+    function convert(exchangeRate) {
+      let conversionResult = xr.convert(exchangeRate, conversionInputs.amountToConvert);
+      ui.displayConversionResult(conversionResult);
+    }
+
     e.preventDefault();
   });
+
+
+
+  xr.getAllRatesTowardsBaseCurrency();
+
+
+
+  storage.initXRFetchTimestamp();
+  //Get last XR-fetch timestamp from the local storage
+  const XRFetchTimestamp = storage.getLastXRFetchTimestamp();
