@@ -31,7 +31,7 @@ function execute() {
   })();
 
   //Get all rates towards the base currency
-  xr.getAllRatesTowardsBaseCurrency(ratesInLocalStorage, ratesAvailabilityInLocalStorage, storedRatesTimestamp)
+  xr.getAllRatesTowardsBaseCurrency(ratesInLocalStorage, ratesAvailabilityInLocalStorage, storedRatesTimestamp, exchangeRatesMaxCacheAge)
     .then((response) => {
       getOneRate(response.ratesTowardsBaseCurrency);
       console.log("Exchange rates for the conversion are from the: " + response.originOfRates);
