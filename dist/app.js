@@ -9,7 +9,6 @@
   //Initialize Calculation
   const calculate = new Calculations();
 
-
   //Get currencies and populate with them the selection lists
   const listTarget1 = document.getElementById("currencySelect1");
   const listTarget2 = document.getElementById("currencySelect2");
