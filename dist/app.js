@@ -6,6 +6,8 @@
   const curr = new Currencies();
   //Initialize the Local storage
   const storage = new Storage();
+  //Initialize Calculation
+  const calculate = new Calculations();
 
 
   //Get currencies and populate with them the selection lists
@@ -49,21 +51,13 @@
 
     function getOneRate(ratesTowardsBaseCurrency) {
       let exchangeRate = xr.getOneRate(ratesTowardsBaseCurrency, conversionInputs.fromCurrency, conversionInputs.toCurrency);
-      doConversion(exchangeRate, conversionInputs.amountToConvert);
-      visualiseRatio(exchangeRate, conversionInputs.fromCurrency, conversionInputs.toCurrency);
+      doRest(exchangeRate, conversionInputs.fromCurrency, conversionInputs.toCurrency, conversionInputs.amountToConvert);
     }
 
-    function doConversion(exchangeRate, amount) {
-      let result = xr.convert(exchangeRate, amount);
-      displayResult(result);
-    }
-
-    function visualiseRatio(exchangeRate, from, to) {
+    function doRest(exchangeRate, from, to, amount) {
+      let conversionResult = calculate.convert(exchangeRate, amount);
       ui.visualiseExchangeRatio(exchangeRate, from, to);
-    }
-
-    function displayResult(result) {
-      ui.displayConversionResult(result);
+      ui.displayConversionResult(conversionResult);
     }
 
     e.preventDefault();
