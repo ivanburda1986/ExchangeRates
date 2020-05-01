@@ -3,13 +3,13 @@ class XR {
     this.apiKey = "4c0bb50d5da07a3eae9a34a8031d0e22"; //currencylayer.com
   }
 
-  //Get a list of conversion rates for all currencies towards the based currency: USD
+  //Get a list of server or cached conversion rates for all currencies towards the based currency: USD
   async getAllRatesTowardsBaseCurrency(ratesInLocalStorage, ratesAvailableInLocalStorage, storedRatesTimestamp) {
     let ratesTowardsBaseCurrency = ratesInLocalStorage;
     let shouldRequestServerData;
     let originOfRates;
 
-    //Check how old the cached data is and if more than 24h give an indication that fresh should be fetched
+    //Check how old the exchange rates in the local storage are. If older than the max acceptable age then set "shouldRequestServerData":"true"
     (function requestServerDataOrNot() {
 
       if (ratesAvailableInLocalStorage === "unavailable") {
@@ -35,7 +35,7 @@ class XR {
       }
     })();
 
-    //Fetches data from the server if the cached data is too old
+    //Retrieves either fresh exchange rates from the server or advises to use the cached data. Returns fresh data if it should be used. Returns origin of the data (cached OR server)
     if (shouldRequestServerData === true) {
       const getServerData = await fetch(
         `http://api.currencylayer.com/live?access_key=${this.apiKey}`
@@ -54,8 +54,8 @@ class XR {
     };
   }
 
+  //Returns an exchange rate for the two selected currencies
   getOneRate(ratesTowardsBaseCurrency, from, to) {
-    //Calculates the conversion rate for two selected currencies and returns it
     const baseCurrency = ratesTowardsBaseCurrency.source;
     let exchangeRate = "";
     (function calculateExchangeRate(from, to) {
