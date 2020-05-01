@@ -4,9 +4,6 @@ class Storage {
     this.to;
     this.defaultFrom = 'EUR';
     this.defaultTo = 'USD';
-
-    this.timestamp = 0;
-    this.setDefaultTimestamp;
   }
   getLastCurrencies() {
     if (localStorage.getItem('from') === null) {
@@ -32,21 +29,14 @@ class Storage {
     localStorage.setItem('to', to);
   }
 
-  getLastXRFetchTimestamp() {
-    this.timestamp = localStorage.getItem('XRFetchTimestamp');
-    return {
-      timestamp: this.timestamp
-    }
+  setAllRatesTowardsBaseCurrency(allRatesTowardsBaseCurrency) {
+    localStorage.setItem('ratesTowardsBaseCurrency', JSON.stringify(allRatesTowardsBaseCurrency));
   }
 
-  initXRFetchTimestamp() {
-    if (localStorage.getItem('XRFetchTimestamp') === null) {
-      localStorage.setItem('XRFetchTimestamp', 100);
-    } else
-      console.log(localStorage.getItem('XRFetchTimestamp'));
+  getAllRatesTowardsBaseCurrency() {
+    let allRatesTowardsBaseCurrency = localStorage.getItem('ratesTowardsBaseCurrency');
+    return JSON.parse(allRatesTowardsBaseCurrency);
   }
 
-  setXRFetchTimestamp(timestamp) {
-    localStorage.setItem('XRFetchTimestamp', timestamp);
-  }
+
 }

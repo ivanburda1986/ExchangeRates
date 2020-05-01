@@ -185,7 +185,7 @@ class XR {
     let shouldRequestServerData = false;
 
     //Check how old the cached data is and if more than 24h give an indication that fresh should be fetched
-    (function shouldGetServerData() {
+    (function requestServerDataOrNot() {
       let lastServerDataTimestamp = ratesTowardsBaseCurrency.timestamp;
       let currentTimestamp = new Date().getTime();
       let timestampDifference = parseInt(

@@ -33,12 +33,16 @@
   //Convert the amount between the two selected currencies and display the results
   document.getElementById("convert-button").addEventListener("click", (e) => {
     //Obtain the inputs: FROM currency, TO currency and the AMOUNT to convert
-    const conversionInputs = ui.getConversionInput();
+    const {
+      from,
+      to,
+      amount
+    } = ui.getConversionInput();
 
     //Save the 'FROM' and 'TO' currencies in the local storage
     storage.setCurrencies(
-      conversionInputs.fromCurrency,
-      conversionInputs.toCurrency
+      from,
+      to
     );
 
     //Get all rates towards the base currency
@@ -48,12 +52,14 @@
       })
       .catch((err) => console.log(err));
 
+    //Get the exchange rate for the FROM and TO combination of currencies
     function getOneRate(ratesTowardsBaseCurrency) {
-      let exchangeRate = xr.getOneRate(ratesTowardsBaseCurrency, conversionInputs.fromCurrency, conversionInputs.toCurrency);
-      doRest(exchangeRate, conversionInputs.fromCurrency, conversionInputs.toCurrency, conversionInputs.amountToConvert);
+      let exchangeRate = xr.getOneRate(ratesTowardsBaseCurrency, from, to);
+      showResults(exchangeRate, from, to, amount);
     }
 
-    function doRest(exchangeRate, from, to, amount) {
+    //Get the conversion result and display it + display also the relative currency power
+    function showResults(exchangeRate, from, to, amount) {
       let conversionResult = calculate.convert(exchangeRate, amount);
       ui.visualiseExchangeRatio(exchangeRate, from, to);
       ui.displayConversionResult(conversionResult);
