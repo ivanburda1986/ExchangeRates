@@ -1,5 +1,6 @@
 @import "config";
 @import "utilities";
+@import "media";
 
 /*General styles*/
 * {
@@ -45,7 +46,7 @@ body {
   margin: 0 auto;
 }
 
-//Exchange ratio
+//Conversion analysis
 #conversionAnalysis {
   display: flex;
   flex-direction: column;
@@ -53,6 +54,10 @@ body {
   .ratioSection {
     display: flex;
     flex-direction: column;
+
+    label {
+      font-weight: 600;
+    }
   }
 
   #conversionRateSection {
@@ -61,6 +66,10 @@ body {
 
     #exchangeRatio {
       margin-left: 10px;
+
+      .currency-flag {
+        margin-left: 5px;
+      }
     }
   }
 

@@ -27,7 +27,7 @@
     color: #172540;
     border: 0px;
     outline: 0; }
-  .elementContainer select {
+  .elementContainer .dropdown {
     grid-area: select;
     border-left: 4px solid #172540;
     border-radius: 5px;
@@ -41,6 +41,29 @@
   border: 3px solid #172540;
   border-radius: 5px;
   cursor: pointer; }
+
+@media (max-width: 600px) {
+  #page-headline {
+    margin: 0 auto;
+    font-size: 1.2rem; }
+  #conversionAnalysis {
+    display: flex;
+    flex-direction: column; }
+    #conversionAnalysis .ratioSection {
+      display: flex;
+      flex-direction: column; }
+    #conversionAnalysis #conversionRateSection {
+      display: flex;
+      flex-direction: column !important; }
+      #conversionAnalysis #conversionRateSection #exchangeRatio {
+        margin-left: 0px !important; }
+  .elementContainer {
+    grid-template-columns: 1fr;
+    grid-template-areas: "label" "input" "select"; }
+    .elementContainer .dropdown {
+      border-left: 0px solid #172540;
+      border-radius: 0px;
+      height: 2rem; } }
 
 /*General styles*/
 * {
@@ -82,11 +105,15 @@ body {
   #conversionAnalysis .ratioSection {
     display: flex;
     flex-direction: column; }
+    #conversionAnalysis .ratioSection label {
+      font-weight: 600; }
   #conversionAnalysis #conversionRateSection {
     display: flex;
     flex-direction: row; }
     #conversionAnalysis #conversionRateSection #exchangeRatio {
       margin-left: 10px; }
+      #conversionAnalysis #conversionRateSection #exchangeRatio .currency-flag {
+        margin-left: 5px; }
   #conversionAnalysis #conversionAnalysisGraphs {
     display: flex; }
     #conversionAnalysis #conversionAnalysisGraphs .graphContainer {

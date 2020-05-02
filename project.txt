@@ -1,5 +1,5 @@
 - currency ex ration visualisation - DONE
 - saving to the local store: the last-time fetch of the exchange rates from the server, last-time selected currencies - DONE
 - removing the need to use the convert button; outcome will recalculate upon every input change - DONE
-- include flags in the ui
-- responsiveness
+- include flags in the ui - DONE
+- responsiveness - DONE

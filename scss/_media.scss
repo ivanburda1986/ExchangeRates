@@ -1,0 +1,46 @@
+@media(max-width: 600px) {
+
+  //Main: Page headline
+  #page-headline {
+    margin: 0 auto;
+    font-size: 1.2rem;
+  }
+
+  //Main: Conversion analysis
+  #conversionAnalysis {
+    display: flex;
+    flex-direction: column;
+
+    .ratioSection {
+      display: flex;
+      flex-direction: column;
+    }
+
+    #conversionRateSection {
+      display: flex;
+      flex-direction: column !important;
+
+      #exchangeRatio {
+        margin-left: 0px !important;
+      }
+    }
+  }
+
+  //Utilities: Element containers
+  .elementContainer {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "label"
+      "input"
+      "select";
+
+    .dropdown {
+      border-left: 0px solid $uiColor;
+      border-radius: 0px;
+      height: 2rem;
+    }
+  }
+
+
+
+}

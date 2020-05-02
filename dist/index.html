@@ -21,7 +21,7 @@
         <label for="amountInput1" class="amountfieldLabel">How much to convert</label>
         <input type="text" name="amountInput1" id="amountInput1" class="amountInput" placeholder="Type in an amount..."
           autocomplete="off">
-        <select name="currencySelect1" id="currencySelect1"></select>
+        <select name="currencySelect1" id="currencySelect1" class="dropdown"></select>
       </div>
 
       <br>
@@ -31,7 +31,7 @@
         <div name="amountOutput1" id="amountOutput1">
           <p>0,00</p>
         </div>
-        <select name="currencySelect2" id="currencySelect2"></select>
+        <select name="currencySelect2" id="currencySelect2" class="dropdown"></select>
       </div>
 
       <br>
@@ -39,14 +39,13 @@
       <div class="elementContainer" id="conversionAnalysis">
         <div class="ratioSection" id="conversionRateSection">
           <label for="exchangeRatio">Conversion rate:</label>
-          <p id="exchangeRatio" name="exchangeRatio"></p>
+          <div id="exchangeRatio" name="exchangeRatio"></div>
         </div>
 
         <div class="ratioSection" id="conversionAnalysisGraphs">
-          <p>Relative currency power:</p>
-          <div class="graphContainer">
+          <label for="graphContainer">Relative currency power:</label>
+          <div class="graphContainer" name="graphContainer">
             <label id="originalCurrencyBarLabel" for="originalCurrencyBar">EUR</label>
-
             <div class="ratioGraph" id="originalCurrencyBar" name="originalCurrencyBar"></div>
           </div>
           <div class="graphContainer">

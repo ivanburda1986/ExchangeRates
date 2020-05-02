@@ -20,7 +20,7 @@ class UI {
     let listCurrencies = "";
     currencyObjectEntries.forEach(function (currency) {
       listCurrencies += `
-      <option value="${currency[0]}"><div id="us-flag"></div>${currency[1]} (${currency[0]})</option>
+      <option value="${currency[0]}">${currency[1]} (${currency[0]})</option>
       `;
     });
     listTarget.innerHTML = listCurrencies;
@@ -40,7 +40,8 @@ class UI {
 
   //Visualise the exchange ratio
   visualiseExchangeRatio(exchangeRate, from, to) {
-    this.exchangeRatio.innerText = `1.00 ${from} = ${exchangeRate} ${to}`;
+    this.exchangeRatio.innerHTML = `<div>1.00 ${from}<div class="currency-flag currency-flag-${from.toLowerCase()}"></div> = ${exchangeRate} ${to}<div class="currency-flag currency-flag-${to.toLowerCase()}"></div></div>`;
+
     this.originalCurrencyBarLabel.innerText = from;
     this.targetCurrencyBarLabel.innerText = to;
 
