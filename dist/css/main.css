@@ -130,6 +130,12 @@ body {
       margin-left: 10px;
       transition: width 3s; }
 
+#githubrepo-link {
+  text-decoration: none;
+  text-align: center;
+  padding: 1rem 0rem;
+  color: #97b7d8; }
+
 #convert-button {
   display: block;
   margin: 1rem auto;
