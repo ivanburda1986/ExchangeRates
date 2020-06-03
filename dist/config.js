@@ -1,2 +1,2 @@
-const currenciesToList = ['CZK', 'USD', 'EUR', 'PLN', 'ISK', 'UAH', 'CAD', 'CHF', 'DKK', 'HRK', 'HUF', 'JPY', 'NOK', 'RUB', 'SEK'].sort();
+const currenciesToList = ["AED", "ARS", "AUD", "BGN", "BRL", "BSD", "CAD", "CHF", "CLP", "CNY", "COP", "CZK", "DKK", "DOP", "EGP", "EUR", "FJD", "GBP", "GTQ", "HKD", "HRK", "HUF", "IDR", "ILS", "INR", "ISK", "JPY", "KRW", "KZT", "MXN", "MYR", "NOK", "NZD", "PAB", "PEN", "PHP", "PKR", "PLN", "PYG", "RON", "RUB", "SAR", "SEK", "SGD", "THB", "TRY", "TWD", "UAH", "USD", "UYU", "ZAR"].sort();
 const exchangeRatesMaxCacheAge = 86400; //1 day

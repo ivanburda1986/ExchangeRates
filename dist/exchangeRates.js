@@ -1,6 +1,6 @@
 class XR {
   constructor() {
-    this.apiKey = "4c0bb50d5da07a3eae9a34a8031d0e22"; //currencylayer.com
+    this.apiKey = "f495763957a54847542292cd"; //www.exchangerate-api.com
   }
 
   //Get a list of server or cached conversion rates for all currencies towards the based currency: USD
@@ -39,7 +39,7 @@ class XR {
     //Retrieves either fresh exchange rates from the server or advises to use the cached data. Returns fresh data if it should be used. Returns origin of the data (cached OR server)
     if (shouldRequestServerData === true) {
       const getServerData = await fetch(
-        `http://api.currencylayer.com/live?access_key=${this.apiKey}`
+        `https://v6.exchangerate-api.com/v6/${this.apiKey}/latest/USD`
       );
       ratesTowardsBaseCurrency = await getServerData.json();
       //console.log("I have used fresh exchange rates from the server!");
@@ -57,12 +57,12 @@ class XR {
 
   //Returns an exchange rate for the two selected currencies
   getOneRate(ratesTowardsBaseCurrency, from, to) {
-    const baseCurrency = ratesTowardsBaseCurrency.source;
+    //const baseCurrency = ratesTowardsBaseCurrency.base_code;
     let exchangeRate = "";
     (function calculateExchangeRate(from, to) {
       exchangeRate = (
-        ratesTowardsBaseCurrency.quotes[baseCurrency + to] /
-        ratesTowardsBaseCurrency.quotes[baseCurrency + from]
+        ratesTowardsBaseCurrency.conversion_rates[to] /
+        ratesTowardsBaseCurrency.conversion_rates[from]
       ).toFixed(2);
     })(from, to);
     return exchangeRate;
