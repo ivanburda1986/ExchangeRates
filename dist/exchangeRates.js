@@ -63,7 +63,7 @@ class XR {
       exchangeRate = (
         ratesTowardsBaseCurrency.conversion_rates[to] /
         ratesTowardsBaseCurrency.conversion_rates[from]
-      ).toFixed(2);
+      ).toFixed(4);
     })(from, to);
     return exchangeRate;
   }
